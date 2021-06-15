@@ -9,7 +9,8 @@ import androidx.annotation.Nullable;
 public class Conexion extends SQLiteOpenHelper {
 
     final String table_nota =
-            "CREATE TABLE nota (id INTEGER, title VARCHAR(50), contet TEXT,  security INTEGER, category INTEGER)";
+            "CREATE TABLE IF NOT EXISTS nota (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "title VARCHAR(50), content TEXT,  security INTEGER, category INTEGER)";
 
     //Constructor de clase
     public Conexion(@Nullable Context context,
