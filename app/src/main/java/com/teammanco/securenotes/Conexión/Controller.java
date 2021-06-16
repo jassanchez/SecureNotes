@@ -21,7 +21,7 @@ public class Controller {
     public long insertNote(Note n){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("id", n.getID());
+        //values.put("id", n.getID());
         values.put("title", n.getTitle());
         values.put("content", n.getContent());
         values.put("security", n.getSecurity());
