@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.teammanco.securenotes.Conexión.Conexion;
@@ -39,6 +40,7 @@ public class ConsultaNotas extends AppCompatActivity {
     private RecyclerAdapter adapter;
     private List<ItemList> items;
     private Controller db;
+    FloatingActionButton fabAdd;
 
     //Variables a usar en el llenado del recycler view
     RecyclerView recyclerView;
@@ -53,6 +55,8 @@ public class ConsultaNotas extends AppCompatActivity {
         db = new Controller(this);
         initViews();
         initValues();
+        fabAdd = findViewById(R.id.fabAdd);
+        fabAdd.setOnClickListener(v -> Toast.makeText(this, "Nacho cachonda", Toast.LENGTH_SHORT).show());
         //biometricPrompt.authenticate(promptInfo);
         /*Button btn = findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {

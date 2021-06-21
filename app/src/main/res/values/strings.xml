@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SecureNotes</string>
+    <string name="fabAdd">Agregar</string>
 </resources>
