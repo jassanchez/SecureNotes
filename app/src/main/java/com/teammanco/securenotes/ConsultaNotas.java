@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.teammanco.securenotes.Conexión.Controller;
 import com.teammanco.securenotes.adapters.RecyclerAdapter;
 import com.teammanco.securenotes.model.ItemList;
 import com.teammanco.securenotes.model.Note;
@@ -33,12 +34,14 @@ public class ConsultaNotas extends AppCompatActivity {
     private RecyclerView rvLista;
     private RecyclerAdapter adapter;
     private List<ItemList> items;
+    private Controller db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta_notas);
         autheticateMobile();
+        db = new Controller(this);
         initViews();
         initValues();
         //biometricPrompt.authenticate(promptInfo);
@@ -59,8 +62,11 @@ public class ConsultaNotas extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rvLista.setLayoutManager(manager);
 
-        items = consultaNotas();
-        adapter = new RecyclerAdapter(items);
+        //db.insertNote(new Note("Nota 1","Contenido chido",1,2));
+        //db.insertNote(new Note("Test","Contenido test",0,2));
+
+        //items = consultaNotas();
+        adapter = new RecyclerAdapter(db.getNotesItems());
         rvLista.setAdapter(adapter);
     }
 

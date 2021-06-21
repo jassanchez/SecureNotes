@@ -5,9 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.teammanco.securenotes.R;
+import com.teammanco.securenotes.model.ItemList;
 import com.teammanco.securenotes.model.Note;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
     private Conexion dbHelper;
@@ -64,6 +67,31 @@ public class Controller {
             Note auxNote = new Note(cursor.getString(1), cursor.getString(2),
                     cursor.getInt(3), cursor.getInt(4));
             notes.add(auxNote);
+        }while(cursor.moveToNext());
+
+        cursor.close();
+        return notes;
+    }
+
+    public List<ItemList> getNotesItems(){
+        List<ItemList> notes = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] columns = {"id", "title", "content", "security", "category"};
+        Cursor cursor = db.query(TABLE_NAME, columns, null, null, null,
+                null, null);
+        //Si hay un error regresa lista vacia
+        if (cursor == null)
+            return notes;
+
+        //Si no hay datos regresa lista vacia
+        if (!cursor.moveToFirst())
+            return notes;
+
+        //Cuando si hay datos
+        do{
+            Note auxNote = new Note(cursor.getString(1), cursor.getString(2),
+                    cursor.getInt(3), cursor.getInt(4));
+            notes.add(new ItemList(auxNote, R.drawable.icon_note));
         }while(cursor.moveToNext());
 
         cursor.close();
