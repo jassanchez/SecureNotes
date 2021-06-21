@@ -14,6 +14,8 @@ public class Note {
         this.category = category;
     }
 
+    public Note(){}
+
     public int getID() {
         return ID;
     }

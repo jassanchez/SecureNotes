@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.teammanco.securenotes.Conexión.Conexion;
 import com.teammanco.securenotes.Conexión.Controller;
 import com.teammanco.securenotes.adapters.RecyclerAdapter;
 import com.teammanco.securenotes.model.ItemList;
@@ -36,6 +40,11 @@ public class ConsultaNotas extends AppCompatActivity {
     private List<ItemList> items;
     private Controller db;
 
+    //Variables a usar en el llenado del recycler view
+    RecyclerView recyclerView;
+    Conexion conn;
+    Controller controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +61,19 @@ public class ConsultaNotas extends AppCompatActivity {
                 showNota(v,new Note("","",1,2));
             }
         });*/
+
+        //Se crea una nueva conexión a la base de datos
+        conn = new Conexion(getApplicationContext(), "db", null, 1);
+        //Objeto de la clase controller
+        controller = new Controller(getApplicationContext());
+        //Instacia del objeto recycler
+        recyclerView = findViewById(R.id.rvLista);
+        //Se le da una orientación
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //Se crea un adaptador usando el metodo getNotesItems() de la clase controller
+        RecyclerAdapter adapter = new RecyclerAdapter(controller.getNotesItems());
+        //Se le pasa el adaptador al recyclerView
+        recyclerView.setAdapter(adapter);
     }
 
     private void initViews(){

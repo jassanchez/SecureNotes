@@ -9,6 +9,9 @@ public class ItemList {
         this.imgResource = imgResource;
     }
 
+    public ItemList() {
+    }
+
     public Note getNote() {
         return note;
     }
