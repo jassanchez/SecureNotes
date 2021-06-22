@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- COLORES DE LA APLICACION -->
+    <color name="azul_base">#4059AD</color>
+    <color name="rosa_base">#EC058E</color>
+    <color name="negro_texto">#2B303A</color>
+
 </resources>

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SecureNotes</string>
     <string name="fabAdd">Agregar</string>
+    <string name="titulo_nota">Titulo</string>
+    <string name="concepto_nota">Concepto</string>
+    <string name="seguridad_nota">Incluir Seguridad</string>
 </resources>
