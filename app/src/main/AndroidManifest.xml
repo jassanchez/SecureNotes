@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecureNotes">
+        <activity android:name=".InsertaNota"></activity>
         <activity android:name=".ConsultaNotas" />
         <activity android:name=".MainActivity">
             <intent-filter>
