@@ -36,26 +36,19 @@ public class ConsultaNotas extends AppCompatActivity {
     private Controller db;
     private FloatingActionButton fabAdd;
 
-    //Variables a usar en el llenado del recycler view
-    private RecyclerView recyclerView;
-    private Conexion conn;
-    private Controller controller;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta_notas);
         autheticateMobile();
         initViews();
+        // Objeto controlador de la base de datos
         db = new Controller(this);
-        //Se crea una nueva conexión a la base de datos
-        conn = new Conexion(getApplicationContext(), "db", null, 1);
-        //Objeto de la clase controller
-        controller = new Controller(getApplicationContext());
+
         Intent intent = new Intent(this, InsertaNota.class);
 
         initValues();
-        fabAdd = findViewById(R.id.fabAdd);
+
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +60,7 @@ public class ConsultaNotas extends AppCompatActivity {
 
     private void initViews(){
         rvLista = findViewById(R.id.rvLista);
+        fabAdd = findViewById(R.id.fabAdd);
     }
 
     private void initValues(){
@@ -74,7 +68,7 @@ public class ConsultaNotas extends AppCompatActivity {
         rvLista.setLayoutManager(manager);
 
         //Se crea un adaptador usando el metodo getNotesItems() de la clase controller
-        adapter = new RecyclerAdapter(controller.getNotesItems());
+        adapter = new RecyclerAdapter(db.getNotesItems());
         //Se le pasa el adaptador al recyclerView
         rvLista.setAdapter(adapter);
     }
