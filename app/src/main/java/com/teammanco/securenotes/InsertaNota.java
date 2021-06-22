@@ -16,8 +16,6 @@ public class InsertaNota extends AppCompatActivity {
 
     private FloatingActionButton btnAdd;
     private Controller db;
-    private Conexion conn;
-    private Controller controller;
 
     private EditText etTitulo;
     private EditText etContenido;
@@ -33,8 +31,6 @@ public class InsertaNota extends AppCompatActivity {
         chkSeguridad = findViewById(R.id.chkSeguridad);
 
         db = new Controller(this);
-        conn = new Conexion(getApplicationContext(), "db", null, 1);
-        controller = new Controller(getApplicationContext());
 
         btnAdd = findViewById(R.id.fabAddNote);
         btnAdd.setOnClickListener(new View.OnClickListener() {
