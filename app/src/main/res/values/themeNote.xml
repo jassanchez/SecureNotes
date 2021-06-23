@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TextInputLayut" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Contorno de la caja -->
+        <item name="boxStrokeColor">@drawable/edit_text_color_selector</item>
+        <!-- el color de relleno, (por defecto es colorOnSurface)-->
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <!-- Hint cuando el campo está vacio y sin foco-->
+        <item name="android:textColorHint">@color/azul_base</item>
+        <!-- Hint cuando se convierte en etiqueta flotante-->
+        <item name="hintTextColor">@color/rosa_base</item>
+        <!-- Color del texto -->
+        <item name="android:textColor">@color/negro_texto</item>
+    </style>
+
+    <style name="Theme.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <!-- Color del recuadro -->
+        <item name="buttonTint">@color/azul_base</item>
+        <!-- Color del label -->
+        <item name="android:textColor">@color/azul_base</item>
+    </style>
+
+</resources>
