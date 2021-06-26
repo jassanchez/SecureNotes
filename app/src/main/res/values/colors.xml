@@ -9,10 +9,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- COLORES DE LA APLICACION -->
-    <color name="azul_base">#4059AD</color>
-    <color name="rosa_base">#EC058E</color>
+    <color name="azul_base">#4059AD</color> <!-- PRIMARY -->
+    <color name="rosa_base">#EC058E</color>  <!-- ACCENT -->
     <color name="negro_texto">#2B303A</color>
-
-    <color name="disabled_color">#FF6200EE</color>
+    <color name="disabled_color">#2E4298</color> <!-- PRIMARY DARK -->
+    <color name="rosa_bajito">#FF4081</color>
 
 </resources>

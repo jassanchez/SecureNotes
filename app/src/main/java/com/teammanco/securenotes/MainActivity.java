@@ -3,6 +3,7 @@ package com.teammanco.securenotes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {

@@ -68,8 +68,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="16dp"
         android:contentDescription="@string/fabAdd"
-        android:src="@drawable/ic_baseline_edit_24"
-        android:backgroundTint="@color/material_on_primary_emphasis_high_type"/>
+        android:src="@drawable/ic_baseline_edit_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

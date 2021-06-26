@@ -1,5 +1,8 @@
 package com.teammanco.securenotes.adapters;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.teammanco.securenotes.R;
@@ -35,12 +39,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(@NonNull RecyclerAdapter.RecyclerHolder holder, int position) {
         ItemList item = items.get(position);
         Note note = item.getNote();
-        holder.img.setImageResource(R.drawable.icon_note);
         holder.txtTitulo.setText(note.getTitle());
-        if(note.getSecurity() == 1)
+        if(note.getSecurity() == 1){
+            holder.txtTitulo.setTextColor(ContextCompat.getColor(holder.txtTitulo.getContext(), R.color.rosa_base));
+            holder.txtDesc.setTextColor(ContextCompat.getColor(holder.txtDesc.getContext(), R.color.rosa_bajito));
             holder.txtDesc.setText("******PRIVATE CONTENT*****");
-        else
+            holder.img.setImageResource(R.drawable.ic_lock_black_24dp);
+            holder.img.setColorFilter(ContextCompat.getColor(holder.img.getContext(), R.color.rosa_bajito));
+        }
+        else{
+            holder.txtTitulo.setTextColor(ContextCompat.getColor(holder.txtTitulo.getContext(), R.color.disabled_color));
+            holder.txtDesc.setTextColor(ContextCompat.getColor(holder.txtDesc.getContext(), R.color.azul_base));
+            holder.img.setImageResource(R.drawable.ic_note_icon2);
             holder.txtDesc.setText(note.getContent());
+            holder.img.setColorFilter(ContextCompat.getColor(holder.img.getContext(), R.color.azul_base));
+        }
+
     }
 
     @Override
