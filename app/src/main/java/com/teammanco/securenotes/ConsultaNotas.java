@@ -21,6 +21,7 @@ import com.teammanco.securenotes.adapters.RecyclerAdapter;
 import com.teammanco.securenotes.model.ItemList;
 import com.teammanco.securenotes.model.Note;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -35,6 +36,9 @@ public class ConsultaNotas extends AppCompatActivity {
     private List<ItemList> items;
     private Controller db;
     private FloatingActionButton fabAdd;
+    private int idNota;
+    private Intent intentNuevaNota;
+    private Intent intentConsultaNota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +49,16 @@ public class ConsultaNotas extends AppCompatActivity {
         // Objeto controlador de la base de datos
         db = new Controller(this);
 
-        Intent intent = new Intent(this, InsertaNota.class);
+        intentNuevaNota = new Intent(this, InsertaNota.class);
+        intentConsultaNota = new Intent(this, ConsultaEditaNota.class);
+
 
         initValues();
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+                startActivity(intentNuevaNota);
             }
         });
         //biometricPrompt.authenticate(promptInfo);
@@ -68,7 +74,21 @@ public class ConsultaNotas extends AppCompatActivity {
         rvLista.setLayoutManager(manager);
 
         //Se crea un adaptador usando el metodo getNotesItems() de la clase controller
-        adapter = new RecyclerAdapter(db.getNotesItems());
+        List<ItemList> lista = db.getNotesItems();
+        adapter = new RecyclerAdapter(lista);
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Note note = lista.get(rvLista.getChildAdapterPosition(v)).getNote();
+                idNota = note.getID();
+                intentConsultaNota.putExtra("Note",note);
+                if (note.getSecurity() == 1){
+                    biometricPrompt.authenticate(promptInfo);
+                }else{
+                    startActivity(intentConsultaNota);
+                }
+            }
+        });
         //Se le pasa el adaptador al recyclerView
         rvLista.setAdapter(adapter);
     }
@@ -98,7 +118,7 @@ public class ConsultaNotas extends AppCompatActivity {
                         @Override
                         public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                             super.onAuthenticationSucceeded(result);
-                            authorized = true;
+                            launchActivity();
                         }
 
                         @Override
@@ -113,5 +133,9 @@ public class ConsultaNotas extends AppCompatActivity {
                     .setNegativeButtonText("Cancelar")
                     .build();
         }
+    }
+
+    private void launchActivity(){
+        startActivity(intentConsultaNota);
     }
 }

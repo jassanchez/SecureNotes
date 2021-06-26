@@ -1,9 +1,20 @@
 package com.teammanco.securenotes.model;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable {
     private int    ID;
     private String title;
     private String content;
+
+    public Note(int ID, String title, String content, int security, int category) {
+        this.ID = ID;
+        this.title = title;
+        this.content = content;
+        this.security = security;
+        this.category = category;
+    }
+
     private int    security;
     private int    category;
 

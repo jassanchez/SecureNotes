@@ -15,8 +15,10 @@ import com.teammanco.securenotes.model.Note;
 
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder>
+            implements View.OnClickListener {
     private List<ItemList> items;
+    private View.OnClickListener listener;
 
     public RecyclerAdapter(List<ItemList> items) {
         this.items = items;
@@ -25,6 +27,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public RecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_view,parent,false);
+        v.setOnClickListener(this);
         return new RecyclerHolder(v);
     }
 
@@ -43,6 +46,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
     }
 
     public static class RecyclerHolder extends RecyclerView.ViewHolder{

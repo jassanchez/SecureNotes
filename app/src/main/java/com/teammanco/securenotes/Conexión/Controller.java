@@ -64,7 +64,7 @@ public class Controller {
 
         //Cuando si hay datos
         do{
-            Note auxNote = new Note(cursor.getString(1), cursor.getString(2),
+            Note auxNote = new Note(cursor.getInt(0),cursor.getString(1), cursor.getString(2),
                     cursor.getInt(3), cursor.getInt(4));
             notes.add(auxNote);
         }while(cursor.moveToNext());
@@ -89,7 +89,7 @@ public class Controller {
 
         //Cuando si hay datos
         do{
-            Note auxNote = new Note(cursor.getString(1), cursor.getString(2),
+            Note auxNote = new Note(cursor.getInt(0),cursor.getString(1), cursor.getString(2),
                     cursor.getInt(3), cursor.getInt(4));
             notes.add(new ItemList(auxNote, R.drawable.icon_note));
         }while(cursor.moveToNext());

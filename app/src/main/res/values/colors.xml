@@ -13,4 +13,6 @@
     <color name="rosa_base">#EC058E</color>
     <color name="negro_texto">#2B303A</color>
 
+    <color name="disabled_color">#FF6200EE</color>
+
 </resources>
